@@ -26,12 +26,15 @@ class Event(models.Model):
     city = models.CharField(max_length=200)
     google_maps_url = models.CharField(max_length=200)
     google_maps_coords = models.CharField(max_length=200)
-    date_event = models.DateField(null=True, blank=True)
+    date_event = models.DateField()
     status = models.BooleanField(verbose_name="Activo", max_length=1, default=True)
     deleted = models.BooleanField(verbose_name="Borrado", max_length=1, default=False)
 
     def num_registereds(self):
         return int(Attendee.objects.filter(event=self.pk).count())
+
+    def is_open(self):
+        return bool(self.n_seats >= self.num_registereds())
 
     def __unicode__(self):
         return "%s %s %s" % (self.title, self.url, self.n_seats)

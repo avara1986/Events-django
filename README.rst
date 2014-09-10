@@ -26,39 +26,6 @@ Installation Basics
 	EMAIL_USE_TLS = True
 	DEFAULT_FROM_EMAIL = 'no-reply@your-domain.es'
 
-Dev & Prod DDBB:
-	
-::
-
-    DATABASES = {
-        'default': {
-            'ENGINE': 'google.appengine.ext.django.backends.rdbms',
-            'INSTANCE': 'test-django-cloud-sql-1234:django-test-1234',
-            'NAME': 'test_django',
-        }
-    }
-
-Constant Project:
-	
-::
-
-	PROJECT_CONSTANTS = {'BASE_URL': 'http://192.168.1.9:999',
-						 'RIA_URL': 'http://192.168.1.9:999/' + RIA_URL,
-						}
-
-
-Export Data:
-
-::
-
-	python manage.py dumpdata --indent=2 > data_initial.json
-	
-Load Data:
-
-::
-
-	python manage.py loaddata data_initial.json
-
 	
 Bower on Ubuntu:
 
@@ -77,16 +44,9 @@ Stop virtual env:
 
 	deactivate
 	
-if the Software have new dependencies, run:
-
-::
-
-	pip freeze > requirements.txt
-	
 Install Python Requirements
 
         pip install -r requirements.txt
-        python setup.py develop
 
 Install Bower + Grunt
 
@@ -97,39 +57,6 @@ Install Assets
         #npm install
         sudo bower --allow-root install		
 		
-Deploy to GoogleAppEngine
-===============================
-
-At last, run this command of django-appengine-toolkit (Thanks Massimiliano!! https://github.com/masci/django-appengine-toolkit)
-
-::
-
-	python manage.py collectdeps -r requirements.txt
-
-Deploy to GAE:
-
-::
-
-	appcfg.py update de4g/
-
-Connect to DDBB:
-
-::
-
-	mysql -u root -h 173.194.87.247 -p -D test_django
-
-
-Import data to DDBB:
-
-::
-
-	mysql -u root -h 173.194.87.247 -p -D test_django < test_django.sql
-	
-Collect statics:
-
-::
-
-	./manage.py collectstatic
 	
 Executing the test
 ==================
@@ -138,7 +65,7 @@ You need install project before
 
 ::
 
-    python manage.py test revengeapp
+    python manage.py test events
 
 
 Executing the test with tox
@@ -171,30 +98,27 @@ Requirements
 
 ::
 
-	Django==1.5
-	GoogleAppEngineCloudStorageClient==1.9.0.0
+	Django==1.6
 	Pillow==2.4.0
-	PyPDF2==1.21
+	PyPDF2==1.23
+	South==0.8.4
 	argparse==1.2.1
-	django-appengine-toolkit==0.2.1
+	diff-match-patch==20121119
+	dj-database-url==0.3.0
+	dj-static==0.0.6
+	django-extensions==1.4.0
+	django-grappelli==2.4.5
+	django-import-export==0.2.3
+	django-toolbelt==0.0.1
+	djangorestframework==2.4.2
+	gunicorn==19.1.1
 	html5lib==1.0b3
-	qrcode==4.0.4
+	httplib2==0.9
+	psycopg2==2.5.4
+	qrcode==5.0.1
 	reportlab==3.1.8
-	six==1.6.1
+	six==1.7.3
+	static3==0.5.1
+	tablib==0.10.0
 	wsgiref==0.1.2
 	xhtml2pdf==0.0.6
-	
-Warnings
-========
-If you use reportLab, it have an error in version 3.1.8. It was solved in the V. 3.1.10 but it´s not now in Pip. To solved it. you must see this commit:
-
-::
-
-	https://bitbucket.org/rptlab/reportlab/commits/ca6c60fd1f627a0f9c040b370ef52f9f4496d6f5
-
-
-Reportlab have been modified to run in GAE, **libs/reportlab/rl_config.py - Line 92**
-
-.. code-block:: python
-
-	if '~' in d: d = os.path.expanduser(d)
