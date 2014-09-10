@@ -6,12 +6,12 @@ from .models import Attendee, Event #User, Post, Photo
 class EventSerializer(serializers.ModelSerializer):
     #posts = serializers.HyperlinkedIdentityField('posts', view_name='userpost-list', lookup_field='username')
     num_registereds = serializers.Field()
-    
+    is_open = serializers.Field()
     class Meta:
         model = Event
         fields = ('id', 'title', 'url', 'n_seats', 'n_seats_overflow', 
                   'address', 'city', 'google_maps_url', 'google_maps_coords', 
-                  'date_event', 'num_registereds',)
+                  'date_event', 'num_registereds', 'is_open')
 
 
 class AttendeeSerializer(serializers.ModelSerializer):

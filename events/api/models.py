@@ -1,5 +1,6 @@
 #encoding: utf-8
 from django.core.mail import send_mail
+from datetime import date
 from django.db import models
 
 
@@ -20,7 +21,7 @@ class Event(models.Model):
     registered = models.DateTimeField(auto_now_add=True)
     title = models.CharField(max_length=100)
     url = models.CharField(max_length=100)
-    n_seats = models.PositiveIntegerField()
+    n_seats = models.PositiveIntegerField(verbose_name="Número de plazas")
     n_seats_overflow = models.IntegerField()
     address = models.CharField(max_length=200)
     city = models.CharField(max_length=200)
@@ -34,7 +35,8 @@ class Event(models.Model):
         return int(Attendee.objects.filter(event=self.pk).count())
 
     def is_open(self):
-        return bool(self.n_seats >= self.num_registereds())
+        return bool((self.n_seats >= self.num_registereds()) and
+                    (self.date_event > date.today()))
 
     def __unicode__(self):
         return "%s %s %s" % (self.title, self.url, self.n_seats)
