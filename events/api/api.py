@@ -17,19 +17,6 @@ class EventList(generics.ListAPIView):
         permissions.AllowAny
     ]
 
-'''
-class AttendeeList(generics.ListAPIView):
-    model = Attendee
-    serializer_class = AttendeeSerializer
-    permission_classes = [
-        permissions.AllowAny
-    ]
-
-    def get_queryset(self):
-        queryset = super(AttendeeList, self).get_queryset()
-        return queryset.filter(event=self.kwargs.get('event'))
-'''
-
 
 class AttendeeList(APIView):
     """
@@ -43,8 +30,10 @@ class AttendeeList(APIView):
     def post(self, request, format=None):
         serializer = AttendeeSerializer(data=request.DATA)
         if serializer.is_valid():
+            #request.META['HTTP_ORIGIN']
             #import ipdb; ipdb.set_trace()
             event = Event.objects.get(pk=serializer.init_data['event'])
+            # Puesto +2 para tests, TODO: cambiar a +1
             if event.is_open and (event.num_registereds()+2 <= event.n_seats):
                 serializer.save()
                 serializer.data.update({'result': True})
@@ -54,17 +43,3 @@ class AttendeeList(APIView):
                 serializer.data.update({'error_msg': 'No quedan plazas'})
                 return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-'''
-@api_view(['GET', 'PUT', 'DELETE'])
-def AttendeeList(request):
-    if request.method == 'GET':
-        attendee = Attendee.objects.all()
-        serializer = AttendeeSerializer(attendee, many=True)
-        return Response(serializer.data)
-    elif request.method == 'POST':
-        serializer = AttendeeSerializer(data=request.DATA)
-        if serializer.is_valid():
-            serializer.save()
-            return Response(serializer.data, status=status.HTTP_201_CREATED)
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-'''
