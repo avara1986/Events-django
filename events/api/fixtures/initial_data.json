@@ -1,0 +1,46 @@
+[
+{
+  "pk": 1, 
+  "model": "sites.site", 
+  "fields": {
+    "domain": "events-drf.herokuapp.com", 
+    "name": "events-drf.herokuapp.com"
+  }
+},
+{
+  "pk": 1, 
+  "model": "api.event", 
+  "fields": {
+    "status": true, 
+    "city": "Madrid", 
+    "n_seats": 3, 
+    "title": "Test Event 1", 
+    "url": "url_test_event_1", 
+    "registered": "2014-09-10T11:40:25.112Z", 
+    "google_maps_coords": "0,0", 
+    "deleted": false, 
+    "n_seats_overflow": 0, 
+    "date_event": "2014-09-29", 
+    "google_maps_url": "https://goo.gl/maps/", 
+    "address": "Street Event 1"
+  }
+},
+{
+  "pk": 2, 
+  "model": "api.event", 
+  "fields": {
+    "status": true, 
+    "city": "Madrid", 
+    "n_seats": 20, 
+    "title": "Test Event 2", 
+    "url": "url_test_event_2", 
+    "registered": "2014-09-10T11:40:50.914Z", 
+    "google_maps_coords": "0, 1", 
+    "deleted": false, 
+    "n_seats_overflow": 0, 
+    "date_event": "2014-09-30", 
+    "google_maps_url": "https://goo.gl/maps/", 
+    "address": "Street Event 2"
+  }
+}
+]
