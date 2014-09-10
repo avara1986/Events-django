@@ -5,10 +5,15 @@
     <div class="col-lg-6 col-md-6">
 	    <h1>Events list</h1>
 	    <div class="row " ng-controller="eventController">
-		    <div ng-repeat="event in events" class="col-lg-12 col-md-12">
+		    <div ng-repeat="event in events" class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
 		    	<h2>{$ event.title $}</h2>
-		    	<span>Num. Reg {$ event.num_registereds $}/{$ event.n_seats $}</span><br/>
-		    	<span><a href="#" ng-click="setRegisterEvent(event.id, event.title)">Register to this event</a></span>
+		    	<div class="row" style="margin-top: 5px">
+		    		<span class="badge">{$ event.date_event | date : format : timezone $}</span> <span>Num. Reg {$ event.num_registereds $}/{$ event.n_seats $}</span><br/>
+		    	</div>
+		    	<div class="row" style="margin-top: 10px">
+			    	<span ng-show="event.is_open" style="background: none repeat scroll 0% 0% rgb(223, 240, 216); padding: 3px 19px; border-radius: 5px;"><a href="#" ng-click="setRegisterEvent(event.id, event.title)">Register to this event</a></span>
+			    	<span ng-show="!event.is_open" style="background: #f2dede; padding: 3px 19px; border-radius: 5px;">The event is full</span>
+		    	</div>
 		    </div>
 	    </div>
     </div>
@@ -42,8 +47,13 @@
 			<div ng-show="is_sending_register" class="alert alert-success" role="alert" style="margin-top: 15px;">
 				<span >Enviando información. Por favor, espere</span>
 		    </div>
-			<div ng-show="result_register" class="alert alert-success" role="alert" style="margin-top: 15px;">
-				<span >Registro completado correctamente. <a href="invitation/{$ attendee_id $}" >haz click aquí para descargar tu acreditación</a></span>
+		    <div ng-show="finish_sending">
+				<div ng-show="result_register" class="alert alert-success" role="alert" style="margin-top: 15px;">
+					<span >Registro completado correctamente. <a href="invitation/{$ attendee_id $}" >haz click aquí para descargar tu acreditación</a></span>
+			    </div>
+				<div ng-show="!result_register" class="alert alert-danger" role="alert" style="margin-top: 15px;">
+					<span >Se produjo el siguiente error: {$ result_error_msg $}</span>
+			    </div>
 		    </div>
 		</form>
     </div>
