@@ -10,6 +10,11 @@ Information
 .. image:: https://travis-ci.org/avara1986/Events-django.svg?branch=master
     :target: https://travis-ci.org/avara1986/Events-django
 
+.. image:: https://coveralls.io/repos/avara1986/Events-django/badge.png?branch=master
+  :target: https://coveralls.io/r/avara1986/Events-django?branch=master
+
+
+
 Events is a Django proyect focused on build events
 
 Installation Basics
