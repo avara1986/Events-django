@@ -7,8 +7,8 @@ Events
 Information
 ===========
 
-.. image:: https://travis-ci.org/avara1986/Django-rest-AngularJS.svg
-    :target: https://travis-ci.org/avara1986/Django-rest-AngularJS
+.. image:: https://travis-ci.org/avara1986/Events-django.svg?branch=master
+    :target: https://travis-ci.org/avara1986/Events-django
 
 Events is a Django proyect focused on build events
 
