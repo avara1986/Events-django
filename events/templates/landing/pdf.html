@@ -1,0 +1,196 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title>Confirmación de Registro: {{ EVENT_NAME }}. {{ EVENT_TYPE_NAME }}</title>
+        <style>
+        	@font-face {
+				font-family: 'roboto';
+				font-style: normal;
+				font-weight: 400;
+				src: url('static/frontend/landing/fonts/roboto.woff');
+			}
+        	@page {
+			   padding: 50px;
+			}
+			#wrapper{
+			    width:100%;
+			    padding-bottom:0px;
+			    font-family:'roboto';
+				color:#666;
+			    font-size:15px;
+			    line-height:20px;
+			}
+			h1{
+			    width:80%;
+			    text-align:left;
+			    color: #0072bc;
+			    font-size:22px;
+			    line-height:10px;
+			    padding-bottom: 0px;
+			    margin-bottom: 0px;
+			}
+			h2{
+				padding-top: 0px;
+				padding-bottom: 0px;
+				margin:0px;
+			    width:80%;
+			    text-align:left;
+			    color: #0072bc;
+			    font-size:16px;
+			}
+			h3{
+				color:#000;
+				padding-top:10px;
+				padding-bottom:10px;
+				margin:0px;
+				border-bottom: 1px solid #000;
+				font-size: 20px;
+				font-weight: 300;
+			}
+			.padding{
+				padding-left:40px;
+				padding-right:40px;
+				margin-top:10px;
+				margin-bottom:10px;
+			}
+			#logo{
+				margin-top:25px;
+				width:200px;
+			}
+			#qr{
+				margin-top:28px;
+				width: 75px;
+			}
+			.line{
+				width:100%;
+				height:1px;
+				border-bottom:1px solid #E5E5E5;
+			}
+			.blue{
+				color:#4285F4;
+			}
+			td.small{
+				padding: 1px;
+				line-height: 12px;
+			}
+			table{
+				margin-top:10px;
+				margin-bottom:10px;
+			}
+			a{
+				color: #4285F4;
+				text-decoration: none;
+				border-bottom: solid 1px #4285F4;
+				display: inline;
+				padding-bottom: 0px;
+			}
+			.mini{
+				color:#ccc;
+				font-size:12px;
+			}
+			.box{
+				background-color: #f1f1f1;
+				color:#000;
+				font-size: 25px;
+				padding-top:12px;
+				padding-bottom:18px;
+				padding-left:10px;
+				padding-right:10px;
+				height: 25px;
+			}
+			#footer{
+				position:fixed;
+				left:0px;
+				bottom: 0px;
+				right: 0px;
+				height:25px;
+				font-size: 12px;
+				text-align: center;
+			}
+        </style>
+    </head>
+    <body>
+        <div id="wrapper">
+        	<div class="padding" style="width:100%;margin:0px;">
+        		<table style="width:100%;height: 85px;">
+	        		<tr>
+	        			<td>
+	        			</td>
+	        			<td style="text-align:center;padding:0px;margin:0px;" valign="middle">
+	        				<span class="mini">Imprime y lleva esta entrada contigo</span>
+	        				<div class="box">
+	        					{{ CLIENT_TYPE }}
+	        				</div>
+	        				<!--<div align="right"><pdf:barcode value="EMBED CODE HERE" type="code128" humanreadable="1" barwidth="0.33mm" barheight="2cm" align="middle"></div>-->
+	        			</td>
+	        			<td style="text-align:right;padding:0px;margin:0px;width:75px;">
+	        			</td>
+	        		</tr>
+	        	</table>
+        	</div>
+        	
+        	<div class="padding">
+        		<h3>Curso: {{ EVENT_TYPE_NAME }}</h3>
+        	</div>
+        	
+        	<div class="padding" style="width:100%">
+        		<table style="width:100%">
+        			<tr>
+        				<td class="small">
+        					<strong>Nombre:</strong> {{ CLIENT_NAME }}
+        				</td>
+        			</tr>
+        			<tr>
+        				<td class="small">
+        					<strong>Apellidos:</strong> {{ CLIENT_SURNAME }}
+        				</td>
+        			</tr>
+        			<tr>
+        				<td></td>
+        			</tr>
+        			<tr>
+        				<td class="small">
+        					<strong>Email:</strong> {{ CLIENT_EMAIL }}
+        				</td>
+        			</tr>
+        			<tr>
+        				<td class="small">
+        					<strong>Web:</strong> {{ CLIENT_WEB }}
+        				</td>
+        			</tr>
+        		</table>
+        	</div>
+        	
+        	<div class="padding"><h3></h3></div>
+        	
+        	<div class="padding" style="width:100%;">
+        		<table style="width:100%">
+        			<tr>
+        				<td class="small">
+        					<p>
+	        					<strong>Ubicación:</strong><br/>
+	        					{{ EVENT_PLACE }}<br/>
+	        					{{ EVENT_ADDRESS }}<br/>
+	        					{{ EVENT_CITY }}<br/>
+        					</p>
+        				</td>
+        			</tr>
+        			<tr>
+        				<td class="small">
+        					<p style="margin-top:0px">
+        						<strong>Fecha y hora:</strong><br/>
+	        					{{ EVENT_DATES }}
+        					</p>
+        				</td>
+        			</tr>
+        		</table>
+        	</div>
+        	
+        	<div id="footer" class="padding">
+        		<p>Para más información visita <a href="www.google-academies.es" target="_blank"></a></p>
+			</div>
+        	
+    	</div>
+    </body>
+</html>
