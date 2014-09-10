@@ -1,7 +1,7 @@
 [run]
-source = apps
-omit =
-    de4g/*
+source =
+	events
+	landing
 
 [report]
 exclude_lines =

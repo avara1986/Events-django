@@ -5,7 +5,10 @@ media/*
 *.pyc
 .tox
 .tox/*
+.coverage
 .coverage.*
+htmlcov/
+Django_Events.egg-info/
 # -- Composer -----------------------------------------
 composer.phar
 
