@@ -6,6 +6,7 @@ argparse==1.2.1
 diff-match-patch==20121119
 dj-database-url==0.3.0
 dj-static==0.0.6
+django-cors-headers==0.13
 django-extensions==1.4.0
 django-grappelli==2.4.5
 django-import-export==0.2.3
