@@ -49,7 +49,7 @@
 		    </div>
 		    <div ng-show="finish_sending">
 				<div ng-show="result_register" class="alert alert-success" role="alert" style="margin-top: 15px;">
-					<span >Registro completado correctamente. <a href="invitation/{$ attendee_id $}" >haz click aquí para descargar tu acreditación</a></span>
+					<span >Registro completado correctamente. <a href="invitation/{$ attendee.id $}" >haz click aquí para descargar tu acreditación</a></span>
 			    </div>
 				<div ng-show="!result_register" class="alert alert-danger" role="alert" style="margin-top: 15px;">
 					<span >Se produjo el siguiente error: {$ result_error_msg $}</span>
