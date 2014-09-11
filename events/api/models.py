@@ -20,7 +20,7 @@ class Event(models.Model):
 
     registered = models.DateTimeField(auto_now_add=True)
     title = models.CharField(max_length=100)
-    url = models.CharField(max_length=100)
+    url = models.CharField(verbose_name="Url del evento", max_length=200, null=True, blank=True)
     n_seats = models.PositiveIntegerField(verbose_name="Número de plazas")
     n_seats_overflow = models.IntegerField()
     address = models.CharField(max_length=200)
@@ -30,6 +30,8 @@ class Event(models.Model):
     date_event = models.DateField()
     status = models.BooleanField(verbose_name="Activo", max_length=1, default=True)
     deleted = models.BooleanField(verbose_name="Borrado", max_length=1, default=False)
+
+
 
     def num_registereds(self):
         return int(Attendee.objects.filter(event=self.pk).count())

@@ -1,4 +1,5 @@
 #encoding: utf-8
+import re
 from rest_framework import generics, permissions
 from rest_framework import status
 #from rest_framework.decorators import api_view
@@ -37,8 +38,19 @@ class AttendeeList(APIView):
             #request.META['HTTP_ORIGIN']
             #import ipdb; ipdb.set_trace()
             event = Event.objects.get(pk=serializer.init_data['event'])
+            if event.url != "" and event.url is not None:
+                #import ipdb; ipdb.set_trace()
+                if 'HTTP_ORIGIN' in  request.META.keys():
+                    requestURL =  request.META['HTTP_ORIGIN']
+                else:
+                    requestURL =  request.META['HTTP_REFERER']
+
+                if not re.search(event.url, requestURL):
+                    serializer.data.update({'result': False})
+                    serializer.data.update({'error_msg': 'No está permitido registrarse desde %s' % requestURL })
+                    return Response(serializer.data, status=status.HTTP_201_CREATED)
             # Puesto +2 para tests, TODO: cambiar a +1
-            if event.is_open and (event.num_registereds()+2 <= event.n_seats):
+            if event.is_open and (event.num_registereds()+1 <= event.n_seats):
                 serializer.save()
                 serializer.data.update({'result': True})
                 return Response(serializer.data, status=status.HTTP_201_CREATED)
