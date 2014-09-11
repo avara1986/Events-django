@@ -17,6 +17,10 @@ class EventList(generics.ListAPIView):
         permissions.AllowAny
     ]
 
+class EventDetail(generics.RetrieveAPIView):
+    model = Event
+    serializer_class = EventSerializer
+    lookup_field = 'pk'
 
 class AttendeeList(APIView):
     """

@@ -1,11 +1,11 @@
 from django.conf.urls import patterns, url, include
 
-from events.api.api import EventList, AttendeeList
+from events.api.api import EventList, EventDetail, AttendeeList
 
 
 event_urls = patterns('',
     #url(r'^/(?P<username>[0-9a-zA-Z_-]+)/posts$', UserPostList.as_view(), name='userpost-list'),
-    #url(r'^/(?P<username>[0-9a-zA-Z_-]+)$', UserDetail.as_view(), name='user-detail'),
+    url(r'^/(?P<pk>[0-9a-zA-Z_-]+)$', EventDetail.as_view(), name='event-detail'),
     url(r'^/$', EventList.as_view(), name='event-list')
 )
 
