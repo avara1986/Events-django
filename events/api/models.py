@@ -2,6 +2,9 @@
 from django.core.mail import send_mail
 from datetime import date
 from django.db import models
+from django.utils.translation import ugettext_lazy as _
+
+from common.models import City, State, Country
 
 
 class EventManager(models.Manager):
@@ -24,10 +27,13 @@ class Event(models.Model):
     n_seats = models.PositiveIntegerField(verbose_name="Número de plazas")
     n_seats_overflow = models.IntegerField()
     address = models.CharField(max_length=200)
-    city = models.CharField(max_length=200)
+    country = models.ForeignKey(Country, verbose_name=_("Pais"), null=True)
+    state = models.ForeignKey(State, verbose_name=_("Provincia"), null=True)
+    city = models.ForeignKey(City, verbose_name=_("Ciudad"), null=True)
     google_maps_url = models.CharField(max_length=200)
     google_maps_coords = models.CharField(max_length=200)
-    date_event = models.DateField()
+    date_event = models.DateField(verbose_name="Fecha de inicio")
+    date_event_end = models.DateField(verbose_name="Fecha de finalización")
     status = models.BooleanField(verbose_name="Activo", max_length=1, default=True)
     deleted = models.BooleanField(verbose_name="Borrado", max_length=1, default=False)
 

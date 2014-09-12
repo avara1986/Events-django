@@ -7,6 +7,8 @@ admin.autodiscover()
 urlpatterns = patterns('',
     # REST - Modelo y Controlador del proyecto
     url(r'^api/', include('events.api.urls')),
+    # REST - Modelo y Controlador del proyecto
+    url(r'^api/common/', include('common.urls')),
     # grappelli URLS
     (r'^grappelli/', include('grappelli.urls')), 
     # Uncomment the admin/doc line below to enable admin documentation:
