@@ -15,7 +15,7 @@ class EventAdmin(admin.ModelAdmin):
     list_display = ('title', 'url', 'n_seats', 'address', 'num_registereds', 'is_open', 'date_event')
 
     class Media:
-            js = ('http://ajax.googleapis.com/ajax/libs/jquery/1.4.0/jquery.min.js',
+            js = ('/static/jquery/jquery.min.js',
                     '/static/admin/js/states.js')
 
 admin.site.register(Event, EventAdmin)
