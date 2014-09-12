@@ -45,6 +45,7 @@ INSTALLED_APPS = (
     'south',
     'rest_framework',
     'corsheaders',
+    'common',
     'landing',
     'events.api',
 )
