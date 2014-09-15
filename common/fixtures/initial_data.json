@@ -1,0 +1,472 @@
+[
+{
+  "pk": 1, 
+  "model": "common.country", 
+  "fields": {
+    "name": "Espa\u00f1a"
+  }
+},
+{
+  "pk": 2, 
+  "model": "common.country", 
+  "fields": {
+    "name": "Portugal"
+  }
+},
+{
+  "pk": 1, 
+  "model": "common.state", 
+  "fields": {
+    "country": 1, 
+    "name": "Almer\u00eda"
+  }
+},
+{
+  "pk": 2, 
+  "model": "common.state", 
+  "fields": {
+    "country": 1, 
+    "name": "C\u00e1diz"
+  }
+},
+{
+  "pk": 3, 
+  "model": "common.state", 
+  "fields": {
+    "country": 1, 
+    "name": "C\u00f3rdoba"
+  }
+},
+{
+  "pk": 4, 
+  "model": "common.state", 
+  "fields": {
+    "country": 1, 
+    "name": "Granada"
+  }
+},
+{
+  "pk": 5, 
+  "model": "common.state", 
+  "fields": {
+    "country": 1, 
+    "name": "Huelva"
+  }
+},
+{
+  "pk": 6, 
+  "model": "common.state", 
+  "fields": {
+    "country": 1, 
+    "name": "Ja\u00e9n"
+  }
+},
+{
+  "pk": 7, 
+  "model": "common.state", 
+  "fields": {
+    "country": 1, 
+    "name": "M\u00e1laga"
+  }
+},
+{
+  "pk": 8, 
+  "model": "common.state", 
+  "fields": {
+    "country": 1, 
+    "name": "Sevilla"
+  }
+},
+{
+  "pk": 9, 
+  "model": "common.state", 
+  "fields": {
+    "country": 1, 
+    "name": "Huesca"
+  }
+},
+{
+  "pk": 10, 
+  "model": "common.state", 
+  "fields": {
+    "country": 1, 
+    "name": "Teruel"
+  }
+},
+{
+  "pk": 11, 
+  "model": "common.state", 
+  "fields": {
+    "country": 1, 
+    "name": "Zaragoza"
+  }
+},
+{
+  "pk": 12, 
+  "model": "common.state", 
+  "fields": {
+    "country": 1, 
+    "name": "Asturias"
+  }
+},
+{
+  "pk": 13, 
+  "model": "common.state", 
+  "fields": {
+    "country": 1, 
+    "name": "Islas Baleares"
+  }
+},
+{
+  "pk": 14, 
+  "model": "common.state", 
+  "fields": {
+    "country": 1, 
+    "name": "Las Palmas"
+  }
+},
+{
+  "pk": 15, 
+  "model": "common.state", 
+  "fields": {
+    "country": 1, 
+    "name": "Santa Cruz de Tenerife"
+  }
+},
+{
+  "pk": 16, 
+  "model": "common.state", 
+  "fields": {
+    "country": 1, 
+    "name": "Cantabria"
+  }
+},
+{
+  "pk": 17, 
+  "model": "common.state", 
+  "fields": {
+    "country": 1, 
+    "name": "Albacete"
+  }
+},
+{
+  "pk": 18, 
+  "model": "common.state", 
+  "fields": {
+    "country": 1, 
+    "name": "Ciudad Real"
+  }
+},
+{
+  "pk": 19, 
+  "model": "common.state", 
+  "fields": {
+    "country": 1, 
+    "name": "Cuenca"
+  }
+},
+{
+  "pk": 20, 
+  "model": "common.state", 
+  "fields": {
+    "country": 1, 
+    "name": "Guadalajara"
+  }
+},
+{
+  "pk": 21, 
+  "model": "common.state", 
+  "fields": {
+    "country": 1, 
+    "name": "Toledo"
+  }
+},
+{
+  "pk": 22, 
+  "model": "common.state", 
+  "fields": {
+    "country": 1, 
+    "name": "\u00c1vila"
+  }
+},
+{
+  "pk": 23, 
+  "model": "common.state", 
+  "fields": {
+    "country": 1, 
+    "name": "Burgos"
+  }
+},
+{
+  "pk": 24, 
+  "model": "common.state", 
+  "fields": {
+    "country": 1, 
+    "name": "Le\u00f3n"
+  }
+},
+{
+  "pk": 25, 
+  "model": "common.state", 
+  "fields": {
+    "country": 1, 
+    "name": "Palencia"
+  }
+},
+{
+  "pk": 26, 
+  "model": "common.state", 
+  "fields": {
+    "country": 1, 
+    "name": "Salamanca"
+  }
+},
+{
+  "pk": 27, 
+  "model": "common.state", 
+  "fields": {
+    "country": 1, 
+    "name": "Segovia"
+  }
+},
+{
+  "pk": 28, 
+  "model": "common.state", 
+  "fields": {
+    "country": 1, 
+    "name": "Soria"
+  }
+},
+{
+  "pk": 29, 
+  "model": "common.state", 
+  "fields": {
+    "country": 1, 
+    "name": "Valladolid"
+  }
+},
+{
+  "pk": 30, 
+  "model": "common.state", 
+  "fields": {
+    "country": 1, 
+    "name": "Zamora"
+  }
+},
+{
+  "pk": 31, 
+  "model": "common.state", 
+  "fields": {
+    "country": 1, 
+    "name": "Barcelona"
+  }
+},
+{
+  "pk": 32, 
+  "model": "common.state", 
+  "fields": {
+    "country": 1, 
+    "name": "Gerona"
+  }
+},
+{
+  "pk": 33, 
+  "model": "common.state", 
+  "fields": {
+    "country": 1, 
+    "name": "L\u00e9rida"
+  }
+},
+{
+  "pk": 34, 
+  "model": "common.state", 
+  "fields": {
+    "country": 1, 
+    "name": "Tarragona"
+  }
+},
+{
+  "pk": 35, 
+  "model": "common.state", 
+  "fields": {
+    "country": 1, 
+    "name": "Alicante"
+  }
+},
+{
+  "pk": 36, 
+  "model": "common.state", 
+  "fields": {
+    "country": 1, 
+    "name": "Castell\u00f3n"
+  }
+},
+{
+  "pk": 37, 
+  "model": "common.state", 
+  "fields": {
+    "country": 1, 
+    "name": "Valencia"
+  }
+},
+{
+  "pk": 38, 
+  "model": "common.state", 
+  "fields": {
+    "country": 1, 
+    "name": "Badajoz"
+  }
+},
+{
+  "pk": 39, 
+  "model": "common.state", 
+  "fields": {
+    "country": 1, 
+    "name": "C\u00e1ceres"
+  }
+},
+{
+  "pk": 40, 
+  "model": "common.state", 
+  "fields": {
+    "country": 1, 
+    "name": "La Coru\u00f1a"
+  }
+},
+{
+  "pk": 41, 
+  "model": "common.state", 
+  "fields": {
+    "country": 1, 
+    "name": "Lugo"
+  }
+},
+{
+  "pk": 42, 
+  "model": "common.state", 
+  "fields": {
+    "country": 1, 
+    "name": "Orense"
+  }
+},
+{
+  "pk": 43, 
+  "model": "common.state", 
+  "fields": {
+    "country": 1, 
+    "name": "Pontevedra"
+  }
+},
+{
+  "pk": 44, 
+  "model": "common.state", 
+  "fields": {
+    "country": 1, 
+    "name": "La Rioja"
+  }
+},
+{
+  "pk": 45, 
+  "model": "common.state", 
+  "fields": {
+    "country": 1, 
+    "name": "Madrid"
+  }
+},
+{
+  "pk": 46, 
+  "model": "common.state", 
+  "fields": {
+    "country": 1, 
+    "name": "Navarra"
+  }
+},
+{
+  "pk": 47, 
+  "model": "common.state", 
+  "fields": {
+    "country": 1, 
+    "name": "\u00c1lava"
+  }
+},
+{
+  "pk": 48, 
+  "model": "common.state", 
+  "fields": {
+    "country": 1, 
+    "name": "Guip\u00fazcoa"
+  }
+},
+{
+  "pk": 49, 
+  "model": "common.state", 
+  "fields": {
+    "country": 1, 
+    "name": "Vizcaya"
+  }
+},
+{
+  "pk": 50, 
+  "model": "common.state", 
+  "fields": {
+    "country": 1, 
+    "name": "Murcia"
+  }
+},
+{
+  "pk": 51, 
+  "model": "common.state", 
+  "fields": {
+    "country": 1, 
+    "name": "Ceuta"
+  }
+},
+{
+  "pk": 52, 
+  "model": "common.state", 
+  "fields": {
+    "country": 1, 
+    "name": "Melilla"
+  }
+},
+{
+  "pk": 1, 
+  "model": "common.city", 
+  "fields": {
+    "state": 45, 
+    "name": "Madrid"
+  }
+},
+{
+  "pk": 2, 
+  "model": "common.city", 
+  "fields": {
+    "state": 48, 
+    "name": "Bilbao"
+  }
+},
+{
+  "pk": 3, 
+  "model": "common.city", 
+  "fields": {
+    "state": 31, 
+    "name": "Barcelona"
+  }
+},
+{
+  "pk": 4, 
+  "model": "common.city", 
+  "fields": {
+    "state": 19, 
+    "name": "Cuenca"
+  }
+},
+{
+  "pk": 5, 
+  "model": "common.city", 
+  "fields": {
+    "state": 21, 
+    "name": "Toledo"
+  }
+}
+]

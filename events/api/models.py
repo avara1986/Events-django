@@ -1,10 +1,10 @@
 #encoding: utf-8
+from django.contrib.auth.models import User
 from django.core.mail import send_mail
-from datetime import date
 from django.db import models
-from django.utils.translation import ugettext_lazy as _
-
 from common.models import City, State, Country
+from django.utils import timezone
+from django.utils.translation import ugettext_lazy as _
 
 
 class EventManager(models.Manager):
@@ -20,8 +20,8 @@ class AttendeeManager(models.Manager):
 class Event(models.Model):
     events = EventManager()
     objects = models.Manager()
-
-    registered = models.DateTimeField(auto_now_add=True)
+    created = models.DateTimeField(auto_now_add=True)
+    created_by = models.ForeignKey(User, null=True, blank=True)
     title = models.CharField(max_length=100)
     url = models.CharField(verbose_name="Url del evento", max_length=200, null=True, blank=True)
     n_seats = models.PositiveIntegerField(verbose_name="Número de plazas")
@@ -32,19 +32,18 @@ class Event(models.Model):
     city = models.ForeignKey(City, verbose_name=_("Ciudad"), null=True)
     google_maps_url = models.CharField(max_length=200)
     google_maps_coords = models.CharField(max_length=200)
-    date_event = models.DateField(verbose_name="Fecha de inicio")
-    date_event_end = models.DateField(verbose_name="Fecha de finalización")
+    date_event = models.DateTimeField(verbose_name="Fecha de inicio")
+    date_event_end = models.DateTimeField(verbose_name="Fecha de finalización")
+    description = models.TextField(verbose_name="Descripción", null=True, blank=True)
     status = models.BooleanField(verbose_name="Activo", max_length=1, default=True)
     deleted = models.BooleanField(verbose_name="Borrado", max_length=1, default=False)
-
-
 
     def num_registereds(self):
         return int(Attendee.objects.filter(event=self.pk).count())
 
     def is_open(self):
         return bool((self.n_seats >= self.num_registereds()) and
-                    (self.date_event > date.today()))
+                    (self.date_event > timezone.now()))
 
     def __unicode__(self):
         return "%s %s %s" % (self.title, self.url, self.n_seats)
@@ -84,19 +83,3 @@ class Attendee(models.Model):
 
     def __unicode__(self):
         return "%s %s" % (self.name, self.event.title,)
-
-'''
-class User(AbstractUser):
-    followers = models.ManyToManyField('self', related_name='followees', symmetrical=False)
-
-
-class Post(models.Model):
-    author = models.ForeignKey(User, related_name='posts')
-    title = models.CharField(max_length=255)
-    body = models.TextField(blank=True, null=True)
-
-
-class Photo(models.Model):
-    post = models.ForeignKey(Post, related_name='photos')
-    image = models.ImageField(upload_to="%Y/%m/%d")
-'''
