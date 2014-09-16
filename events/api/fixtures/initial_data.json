@@ -1,0 +1,29 @@
+[
+{
+  "pk": 1, 
+  "model": "api.event", 
+  "fields": {
+    "footer": "", 
+    "city": 1, 
+    "n_seats": 10, 
+    "date_event_end": "2014-09-30T07:00:00Z", 
+    "title": "Evento 1", 
+    "url_private": "evento_1", 
+    "country": 1, 
+    "created": "2014-09-16T12:00:36.594Z", 
+    "status": true, 
+    "state": 45, 
+    "created_by": 1, 
+    "google_maps_coords": "0, 1", 
+    "header": "", 
+    "n_seats_overflow": 0, 
+    "date_event": "2014-09-29T07:00:00Z", 
+    "google_maps_url": "https://goo.gl/maps/", 
+    "deleted": false, 
+    "address": "Calle 1", 
+    "logo": "logos/unnamed_1.png", 
+    "url_public": "http://www.evento1.com/", 
+    "description": ""
+  }
+}
+]
