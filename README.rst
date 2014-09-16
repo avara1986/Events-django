@@ -62,7 +62,11 @@ Install Assets
         #npm install
         sudo bower --allow-root install		
 		
-	
+Fixtures:
+		./manage.py dumpdata api --indent=2 > events/api/fixtures/initial_data.json
+		./manage.py dumpdata common --indent=2 > common/fixtures/initial_data.json
+
+
 Executing the test
 ==================
 

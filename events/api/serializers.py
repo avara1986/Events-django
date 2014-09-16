@@ -9,7 +9,7 @@ class EventSerializer(serializers.ModelSerializer):
     is_open = serializers.Field()
     class Meta:
         model = Event
-        fields = ('id', 'title', 'url', 'n_seats', 'n_seats_overflow', 
+        fields = ('id', 'title', 'url_public', 'n_seats', 'n_seats_overflow', 
                   'address', 'city', 'google_maps_url', 'google_maps_coords', 
                   'date_event', 'num_registereds', 'is_open')
 
@@ -19,7 +19,7 @@ class AttendeeSerializer(serializers.ModelSerializer):
     class Meta:
         model = Attendee
         fields = ('id', 'event', 'name', 'surname', 'phone', 'email',
-                  'company', 'job_title', 'web', )
+                  'company', 'job_title', 'web', 'qr_code')
 
 
 

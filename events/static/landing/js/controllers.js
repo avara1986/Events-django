@@ -64,6 +64,10 @@ angular.module('formAttendee', [])
             	$scope.attendee = data;
             }).
             error(function(data, status, headers, config) {
+            	$scope.is_sending_register = false;
+            	$scope.finish_sending = true;
+            	$scope.result_register = false;
+            	$scope.result_error_msg = data;
                 console.log(data);
                 console.log(status);
                 console.log(headers);
