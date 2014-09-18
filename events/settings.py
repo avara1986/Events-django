@@ -45,6 +45,7 @@ INSTALLED_APPS = (
     'south',
     'rest_framework',
     'corsheaders',
+    'dynamic_form',
     'common',
     'landing',
     'events.api',
@@ -236,3 +237,8 @@ GRAPPELLI_ADMIN_TITLE = "Events in django"
 
 #CORS TODO: remove ALLOW ALL
 CORS_ORIGIN_ALLOW_ALL = True
+
+#DYNAMIC FORM
+DYNAMIC_FORM_MODEL_IMPORT = 'events'
+DYNAMIC_FORM_QUESTION_FK_MODEL = 'Event'
+DYNAMIC_FORM_ANSWER_FK_MODEL = 'Attendee'

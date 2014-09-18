@@ -1,0 +1,28 @@
+# encoding: utf-8
+from django.contrib import admin
+from .models import Question, Answer
+
+
+class DynamicFormMixinBase(object):
+    pass
+
+
+class DynamicFormQuestionerMixin(DynamicFormMixinBase):
+    def get_questions(self):
+        return Question.objects.filter(questioner=self.id)
+
+
+class DynamicFormAnswererMixin(DynamicFormMixinBase):
+    def get_questions(self):
+        return Answer.objects.filter(answerer=self.id)
+
+
+class QuestionInline(admin.TabularInline):
+    model = Question
+
+
+class AnswerInline(admin.TabularInline):
+    model = Answer
+
+admin.site.register(Question)
+admin.site.register(Answer)

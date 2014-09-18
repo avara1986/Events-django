@@ -10,7 +10,7 @@ from django.db import models
 from common.models import City, State, Country
 from django.utils import timezone
 from django.utils.translation import ugettext_lazy as _
-
+#from dynamic_form.admin import *
 
 
 class EventManager(models.Manager):

@@ -10,6 +10,9 @@ class WhitelistAdmin(ImportExportModelAdmin, admin.ModelAdmin):
     list_display = ('email', )
     filter_horizontal = ("event", )
 
+    class Meta:
+        app_label = "event"
+
     class Media:
         css = {
             'all': ('/static/admin/css/admin.css',)
@@ -19,6 +22,9 @@ class WhitelistAdmin(ImportExportModelAdmin, admin.ModelAdmin):
 class AttendeeAdmin(ExportMixin, admin.ModelAdmin):
     search_fields = ['name', 'surname', 'email', 'company']
     list_display = ('registered', 'name', 'surname', 'email', 'company')
+
+    class Meta:
+        app_label = "Event"
 
     class Media:
         css = {
@@ -61,6 +67,9 @@ class EventAdmin(admin.ModelAdmin):
         if request.user.is_superuser:
             return qs
         return qs.filter(created_by=request.user)
+
+    class Meta:
+        app_label = "Event"
 
     class Media:
             js = ('/static/jquery/jquery.min.js',
