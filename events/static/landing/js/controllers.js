@@ -15,16 +15,15 @@ angular.module('events', ['eventService'])
         console.log(headers);
         console.log(config);
       });
-	  $scope.setRegisterEvent = function(id, title) {
-		  sharedEvent.id = id;
-		  sharedEvent.title = title;
+	  $scope.setRegisterEvent = function(event) {
+		  sharedEvent.event = event;
+		  console.log(sharedEvent.event);
 	  };
 }]);
 
 angular.module('formAttendee', [])
 .controller('attendeeController', ['$scope','$http', '$log' , 'sharedEvent', function($scope, $http, $log, sharedEvent) {
-
-	$scope.event = sharedEvent;
+	$scope.event= sharedEvent;
 	/**
 	 * Muestra si hubo un error en el envío(false) o la confirmación (true)
 	 */
@@ -48,12 +47,28 @@ angular.module('formAttendee', [])
 	$scope.attendee.name = "Alberto";
 	$scope.attendee.surname = "test2";
 	$scope.attendee.email = "test2@gmail.com";
-	$scope.attendee.web = "test2.com";
-    $scope.submit = function(attendee,event) {
+    $scope.submit = function() {
+    	/**
+    	 * Mostramos el mensaje de "se está madnando"
+    	 */
     	$scope.is_sending_register = true;
-    	$scope.attendee = attendee;
-    	$scope.attendee.event = event.id;
-    	//attendee.event = event.id;
+    	/**
+    	 * Preparamos nuestros datos para el modelo de la API
+    	 */
+    	$scope.attendee.event = $scope.event.event.id;
+    	$scope.attendee.answers = [];
+    	$scope.event.event.questions.forEach(function(question) {
+    	    console.log(question);
+    	    $scope.attendee.answers.push({
+    	    	question: question.id,
+    	    	answer: question.answer
+    	    })
+    	});
+    	console.log($scope.attendee);
+    	//return false;
+    	/**
+    	 * Enviamos los datos a la API
+    	 */
     	$http.post('api/attendees/', $scope.attendee)
             .success(function(data) {
             	console.log(data);

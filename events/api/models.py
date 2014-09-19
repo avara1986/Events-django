@@ -10,7 +10,6 @@ from django.db import models
 from common.models import City, State, Country
 from django.utils import timezone
 from django.utils.translation import ugettext_lazy as _
-#from dynamic_form.admin import *
 
 
 class EventManager(models.Manager):
@@ -40,7 +39,7 @@ class Event(models.Model):
     city = models.ForeignKey(City, verbose_name=_("Ciudad"), null=True)
     google_maps_url = models.CharField(max_length=200)
     google_maps_coords = models.CharField(max_length=200)
-    whitelist = models.BooleanField(verbose_name="Usar whitelist", max_length=1, default=False)
+    #whitelist = models.BooleanField(verbose_name="Usar whitelist", max_length=1, default=False)
     date_event = models.DateTimeField(verbose_name="Fecha de inicio")
     date_event_end = models.DateTimeField(verbose_name="Fecha de finalización")
     header = models.TextField(verbose_name="Cabecera", null=True, blank=True)
@@ -55,7 +54,7 @@ class Event(models.Model):
     def num_registereds(self):
         return int(Attendee.objects.filter(event=self.pk).count())
 
-    def whitelist(self):
+    def num_whitelisted(self):
         return int(Whitelist.objects.filter(event=self.pk).count())
 
     def is_open(self):
@@ -78,16 +77,10 @@ class Attendee(models.Model):
     objects = models.Manager()
     attendees = AttendeeManager()
     registered = models.DateTimeField(verbose_name="Fecha de registro", auto_now_add=True)
+    event = models.ForeignKey(Event)
     name = models.CharField(verbose_name="Nombre", max_length=100)
     surname = models.CharField(verbose_name="Apellidos", max_length=100)
-    phone = models.CharField(verbose_name="Teléfono", max_length=16, null=True, blank=True)
     email = models.EmailField(verbose_name="Email", max_length=100)
-    company = models.CharField(verbose_name="Empresa", max_length=100, null=True, blank=True)
-    job_title = models.CharField(verbose_name="Cargo", max_length=100, null=True, blank=True)
-    web = models.URLField(verbose_name="Web", max_length=250, null=True, blank=True)
-    reg_code = models.CharField(verbose_name="Localizador", max_length=100, null=True, blank=True)
-    mcc = models.CharField(max_length=15, null=True, blank=True)
-    id_googlepartners = models.CharField(max_length=200, null=True, blank=True)
     qr_code = models.ImageField(verbose_name="Código QR", 
                                 upload_to="qrs",
                                 null=True, blank=True)
@@ -95,18 +88,19 @@ class Attendee(models.Model):
     attended = models.BooleanField(verbose_name="Ha asistido", max_length=1, default=False)
     status = models.BooleanField(verbose_name="Activo", max_length=1, default=True)
     deleted = models.BooleanField(verbose_name="Borrado", max_length=1, default=False)
-    event = models.ForeignKey(Event)
+
+    class Meta:
+        ordering = ('registered',)
+        unique_together = ('event', 'email')
 
     def email_register(self, subject, message, from_email=None):
-        """
-        Sends an email to this User.
-        """
         send_mail(subject, message, from_email, [self.email])
 
     def __unicode__(self):
         return "%s %s" % (self.name, self.event.title,)
 
 
+#GENERATE QR CODE
 def qrcode_pre_save(sender, instance, **kwargs):
     if not instance.pk:
         instance._QRCODE = True

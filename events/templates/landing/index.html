@@ -11,18 +11,17 @@
 		    		<span class="badge">{$ event.date_event | date : format : timezone $}</span> <span>Num. Reg {$ event.num_registereds $}/{$ event.n_seats $}</span><br/>
 		    	</div>
 		    	<div class="row" style="margin-top: 10px">
-			    	<span ng-show="event.is_open" style="background: none repeat scroll 0% 0% rgb(223, 240, 216); padding: 3px 19px; border-radius: 5px;"><a href="#" ng-click="setRegisterEvent(event.id, event.title)">Register to this event</a></span>
+			    	<span ng-show="event.is_open" style="background: none repeat scroll 0% 0% rgb(223, 240, 216); padding: 3px 19px; border-radius: 5px;"><a href="#" ng-click="setRegisterEvent(event)">Register to this event</a></span>
 			    	<span ng-show="!event.is_open" style="background: #f2dede; padding: 3px 19px; border-radius: 5px;">The event is full</span>
 		    	</div>
 		    </div>
 	    </div>
     </div>
-    <div class="col-lg-6 col-md-6" ng-controller="attendeeController">
-    	<h1 ng-click="showEv()">Register</h1>
-    	<h1> {$ event.title || "Event no selected" $}</h1>
+    <div class="col-lg-6 col-md-6" ng-controller="attendeeController ">
+    	<h1>Register</h1>
+    	<h1> {$ event.event.title || "Event no selected" $}</h1>
 		<form role="form" name="form" class="css-form" novalidate>
 			{% csrf_token %}
-			<input type="hidden" class="form-control" ng-model="event.id" name="eventId" id="eventId" required>
 			<div class="form-group">
 			    <label for="exampleInputEmail1">Name</label>
 			    <input type="text" class="form-control" ng-model="attendee.name" name="name" id="name" placeholder="Your name" required>
@@ -35,11 +34,12 @@
 			    <label for="exampleInputEmail1">Email</label>
 			    <input type="email" class="form-control" ng-model="attendee.email" name="email" id="email" placeholder="your-email@example.com" required>
 			</div>
-			<div class="form-group">
-			    <label for="exampleInputPassword1">Web</label>
-			    <input type="text" class="form-control" ng-model="attendee.web" name="web" id="web" placeholder="http://www.example.com" >
+			<div class="form-group" ng-repeat="question in event.event.questions">
+			    <label for="exampleInputPassword1">{$ question.question $}</label>
+			    <input type="hidden" class="form-control" ng-model="question.id" name="question.id" id="extra_company" placeholder="" value="">
+			    <input type="text" class="form-control" ng-model="question.answer" name="question.answer" id="extra_company" placeholder="" value="">
 			</div>
-			<button type="submit" class="btn btn-default" ng-click="submit(attendee, event)" ng-disabled="form.$invalid || isUnchanged(attendee)">Register</button>
+			<button type="submit" class="btn btn-default" ng-click="submit()" ng-disabled="form.$invalid || isUnchanged(attendee)">Register</button>
 			<div ng-show="form.email.$dirty && form.email.$invalid" class="alert alert-danger" role="alert" style="margin-top: 15px;">Invalid:
 				<span ng-show="form.email.$error.required">Tell us your email.</span>
 				<span ng-show="form.email.$error.email">This is not a valid email.</span>

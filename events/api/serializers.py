@@ -1,25 +1,39 @@
 from rest_framework import serializers
 
-from .models import Attendee, Event #User, Post, Photo
+from dynamic_form.models import Question, Answer
+from .models import Attendee, Event
+
+
+class QuestionSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Question
+        fields = ('id', 'slug', 'question', 'required', 'type')
+
+
+class AsnwerSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Answer
+        fields = ('id', 'question', 'answer')
 
 
 class EventSerializer(serializers.ModelSerializer):
-    #posts = serializers.HyperlinkedIdentityField('posts', view_name='userpost-list', lookup_field='username')
     num_registereds = serializers.Field()
     is_open = serializers.Field()
+    questions = QuestionSerializer(many=True)
+
     class Meta:
         model = Event
-        fields = ('id', 'title', 'url_public', 'n_seats', 'n_seats_overflow', 
-                  'address', 'city', 'google_maps_url', 'google_maps_coords', 
-                  'date_event', 'num_registereds', 'is_open')
+        fields = ('id', 'title', 'url_public', 'n_seats', 'n_seats_overflow',
+                  'address', 'city', 'google_maps_url', 'google_maps_coords',
+                  'date_event', 'num_registereds', 'is_open', 'questions')
 
 
 class AttendeeSerializer(serializers.ModelSerializer):
+    answers = AsnwerSerializer(many=True)
 
     class Meta:
         model = Attendee
-        fields = ('id', 'event', 'name', 'surname', 'phone', 'email',
-                  'company', 'job_title', 'web', 'qr_code')
+        fields = ('id', 'event', 'name', 'surname', 'email', 'answers')
 
 
 

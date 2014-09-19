@@ -38,9 +38,12 @@ class AttendeeList(APIView):
         serializer = AttendeeSerializer(data=request.DATA)
         serializer.data.update({'result': False})
         if serializer.is_valid():
-            #request.META['HTTP_ORIGIN']
-            #import ipdb; ipdb.set_trace()
+
+            import ipdb; ipdb.set_trace()
             event = Event.objects.get(pk=serializer.init_data['event'])
+            '''
+            Si la URL pública se ha definido, se verifica que solo pueden venir registros desde esa URL
+            '''
             if event.url_public != "" and event.url_public is not None:
                 #import ipdb; ipdb.set_trace()
                 if 'HTTP_ORIGIN' in  request.META.keys():
@@ -50,8 +53,10 @@ class AttendeeList(APIView):
 
                 if not re.search(event.url_public, requestURL):
                     serializer.data.update({'error_msg': 'No está permitido registrarse desde %s' % requestURL })
-                    return Response(serializer.data, status=status.HTTP_201_CREATED)
-            # Puesto +2 para tests, TODO: cambiar a +1
+                    return Response(serializer.data, status=status.HTTP_400_BAD_REQUEST)
+            '''
+            Se verifica el número de plazas
+            '''
             if event.is_open and ((event.num_registereds() + 1) <= event.n_seats):
                 #serializer.object.qr_code=""
                 serializer.save()

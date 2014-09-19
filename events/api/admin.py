@@ -3,25 +3,13 @@ from django.contrib import admin
 from import_export.admin import ImportExportModelAdmin, ExportMixin
 from events.api.models import Event, Attendee, Whitelist
 from events.api.forms import EventsChangeForm
+from dynamic_form.admin import QuestionInline, AnswerInline
 
 
 class WhitelistAdmin(ImportExportModelAdmin, admin.ModelAdmin):
     search_fields = ['email', ]
     list_display = ('email', )
     filter_horizontal = ("event", )
-
-    class Meta:
-        app_label = "event"
-
-    class Media:
-        css = {
-            'all': ('/static/admin/css/admin.css',)
-            }
-
-
-class AttendeeAdmin(ExportMixin, admin.ModelAdmin):
-    search_fields = ['name', 'surname', 'email', 'company']
-    list_display = ('registered', 'name', 'surname', 'email', 'company')
 
     class Meta:
         app_label = "Event"
@@ -32,11 +20,29 @@ class AttendeeAdmin(ExportMixin, admin.ModelAdmin):
             }
 
 
+class AttendeeAdmin(ExportMixin, admin.ModelAdmin):
+    search_fields = ['name', 'surname', 'email']
+    list_display = ('registered', 'name', 'surname', 'email')
+
+    inlines = [
+               AnswerInline
+               ]
+
+    class Media:
+        css = {
+            'all': ('/static/admin/css/admin.css',)
+            }
+
+
 class EventAdmin(admin.ModelAdmin):
     form = EventsChangeForm
     search_fields = ['name', 'title', 'address']
-    list_display = ('title', 'n_seats', 'address', 'num_registereds', 'is_open', 'date_event')
+    list_display = ('title', 'n_seats', 'address', 'num_registereds', 'is_open', 'date_event', 'date_event_end','num_whitelisted')
     readonly_fields = ('created_by', )
+
+    inlines = [
+               QuestionInline
+               ]
 
     fieldsets = [
         (None, {
