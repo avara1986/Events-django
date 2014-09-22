@@ -81,8 +81,8 @@ angular.module('formAttendee', [])
             error(function(data, status, headers, config) {
             	$scope.is_sending_register = false;
             	$scope.finish_sending = true;
-            	$scope.result_register = false;
-            	$scope.result_error_msg = data;
+            	$scope.result_register = data.result;
+            	$scope.result_error_msg = data.error_msg;
                 console.log(data);
                 console.log(status);
                 console.log(headers);

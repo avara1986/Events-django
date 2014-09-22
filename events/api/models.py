@@ -2,7 +2,7 @@
 import StringIO
 import qrcode
 
-from django.contrib.auth.models import User
+from django.contrib.auth.models import User, Group
 from django.core.files import File
 from django.core.files.base import ContentFile
 from django.core.mail import send_mail
@@ -28,6 +28,7 @@ class Event(models.Model):
 
     created = models.DateTimeField(auto_now_add=True)
     created_by = models.ForeignKey(User, null=True, blank=True)
+    group = models.ForeignKey(Group, null=True, blank=True)
     title = models.CharField(max_length=100)
     url_private = models.SlugField(verbose_name="Url interna del evento", max_length=200, null=True, blank=True)
     url_public = models.URLField(verbose_name="Url pública del evento", max_length=200, null=True, blank=True)

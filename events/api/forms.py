@@ -1,5 +1,6 @@
 # encoding: utf-8
 from django import forms
+from django.contrib.auth.models import Group
 from django.forms import widgets
 from django.forms.util import flatatt
 from django.utils.encoding import smart_unicode
@@ -47,6 +48,8 @@ class CityChoiceWidget(widgets.Select):
 
 
 class EventsChangeForm(forms.ModelForm):
+    #group = forms.ModelChoiceField(Group.objects.filter(),
+    #            label=ugettext_lazy("Grupos"), required=False)
     state = forms.ModelChoiceField(State.objects,
                 widget=StateChoiceWidget(),
                 label=ugettext_lazy("Provincia"), required=False)

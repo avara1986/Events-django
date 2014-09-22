@@ -39,7 +39,7 @@ class AttendeeList(APIView):
         serializer.data.update({'result': False})
         if serializer.is_valid():
 
-            import ipdb; ipdb.set_trace()
+            #import ipdb; ipdb.set_trace()
             event = Event.objects.get(pk=serializer.init_data['event'])
             '''
             Si la URL pública se ha definido, se verifica que solo pueden venir registros desde esa URL
